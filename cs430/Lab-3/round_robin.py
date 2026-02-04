@@ -3,6 +3,7 @@ from tron_base import TronGame, RandomAgent
 from greedy import GreedyAgent
 from minimax import MinimaxAgent
 from mcts import MCTSAgent
+from articulation import AdvancedMinimaxAgent
 import time
 
 # Define all agents using our imported classes
@@ -12,7 +13,8 @@ agents = {
     'Minimax-2': MinimaxAgent(depth=2),
     'Minimax-3': MinimaxAgent(depth=5),
     'MCTS-200': MCTSAgent(simulations=200),
-    'MCTS-500': MCTSAgent(simulations=500)
+    'MCTS-500': MCTSAgent(simulations=500),
+    'AdvancedMinimax': AdvancedMinimaxAgent()
 }
 
 # Tournament function
@@ -29,7 +31,7 @@ def run_round_robin_tournament(games_per_matchup=3):
             print(f"\n{name1} vs {name2}:")
             
             for game_num in range(games_per_matchup):
-                game = TronGame(width=10, height=10)
+                game = TronGame(width=30, height=30)
                 state = game.reset()
                 moves = 0
                 

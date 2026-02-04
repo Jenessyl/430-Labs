@@ -26,7 +26,7 @@ class OllamaAgent:
         desc += f"Your available moves: {', '.join(my_moves)}\n"
         desc += f"Empty cells near you: {self.count_nearby_space(board, my_pos)}\n"
         desc += f"Empty cells near opponent: {self.count_nearby_space(board, opp_pos)}\n"
-        desc += "\nChoose ONE move (UP/DOWN/LEFT/RIGHT) that maximizes your survival space."
+        desc += "\nChoose ONE move (UP/DOWN/LEFT/RIGHT) that counters a greedy algorithm"
         return desc
     
     def count_nearby_space(self, board, pos):
@@ -133,7 +133,7 @@ def visualize_ollama_game(model="llama3.2"):
     print("Watch LLM vs Greedy with visualization (optional)")
     print("="*60)
     
-    from tron_agents import GreedyAgent, OllamaAgent
+    # from tron_agents import GreedyAgent, OllamaAgent
     
     ollama = OllamaAgent(model=model)
     greedy = GreedyAgent()
