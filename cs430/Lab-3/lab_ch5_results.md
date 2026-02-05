@@ -10,7 +10,7 @@
 3. 
     a) With random agents, the game only lasts a few seconds. If the agent had a lookahead feature in order to determine moves with the best success, that would take longer to calculate, and thus games would last longer if the agents wanted to make more intelligent decisions.
 
-    B) To win the game, you have to outlast the other player. Beause the agents are making random moves, they often crash into themselves since they are not thinking ahead and planning a good route. Additonally, they do not try to apply certain strategies to sabotage the other player. If they do run into each other, it is by chance.
+    b) To win the game, you have to outlast the other player. Beause the agents are making random moves, they often crash into themselves since they are not thinking ahead and planning a good route. Additonally, they do not try to apply certain strategies to sabotage the other player. If they do run into each other, it is by chance.
 
 4. In Tron, there is a limited amount of empty space and players would want to have control of that space to increase their chances of winning. With the flood-fill heuristic, the agents prioritize taking steps to get access to the most empty space available. The flood is taking advantage of the first few seconds of the game in that it takes over spaces the other player does not have proximity to.
 
@@ -27,14 +27,13 @@
 9. 
     a) Minimax seems to want to interfer with the greedy player. It cuts them off so that P2 has to loop around itself and crash. On the other hand, greedy seems concerned with just filling as many spaces as possible, without regard to what P1 is doing. In this example, this strategy is helpful to minimax as it helps it win 100% of the time. This could lead to a loss where minimax is so focused on trapping the other player that it can end up trapping itself. You can even see this when you run the play that if P2 was able to last a little longer, P1 would have crashed into itself. Another instance where this would not help minimax is if its opponent is playing suboptimally (like if it was choosing random moves) because minimax would not be able to make good predictions.
 
-    *b) With more lookahead, an agent can make higher quality evaluations as long as the heuristic aligns with the goal.
+    b) With more lookahead, an agent can make higher quality evaluations as long as the heuristic aligns with the goal.
 
 10. MCTS seems to evaluate move quality rather than position quality, where it is not concerned with the whole domain of the board when deciding a move. Instead, it is only concerned with possible outcomes of a move, the information it gets from its simulations. Due law of large numbers, the more simulations MCTS is able to run, the more its predictions become closer to reality and thus it is able to make more accurate decisions.
 
 11. UCB1 exploration parameter tells the agent which nodes to expand while minimax's depth parameter tells it how deep of an exploration of a node goes, and not necessarily which ones to choose. UCB1 addresses the exploration-exploitation trade-off in that it dynamically chooses which nodes it explores whereas the depth parameter explores all nodes until a certain point.
 
-*12. A game with a deep tree, in order to make good predictions, minimax would have to check all nodes, requiring a higher depth value. On the other hand MCTS can focuses on promising moves rather than exploring all options. In short, if minimax does not have a high depth value, its evaluations will have less quality while MCTS is able to decide which moves are better with less computation.
-
+12. A game with a deep tree, in order to make good predictions, minimax assumes its opponent plays perfectly as well and has to explore all possibilities. An accurate evaluation of this sort would require a high depth value. On the other hand MCTS can focuses on promising moves rather than exploring all options. In short, if minimax does not have a high depth value, its evaluations will have less quality while MCTS is able to decide which moves are better with less computation.
 
 13. If your LLM is well trained on the game and is given well structured prompts and high quality information, it will be able to give good responses. On the other hand, if the input is more vague, the LLM will not be able to do well in less common, specific instances. Additionally, LLMs take a lot of computational cost compared to traditional algorithms.
 
@@ -67,8 +66,10 @@
 
     Note: With multiple runs of the game, agents in places 5-6 seem to switch regularly. Sometimes Advanced Minimax performs better than greedy.
 
-    A hypothetical Tron board where this ranking may change would be if we changed the board size to 30x30
+    A hypothetical Tron board where this ranking may change would be if we changed the board size to be bigger like in 30x30. 
 
-23. MCTS and LLM seem to be computationally similar since they are both statistically focused. Minimax differs in its logic in that it doesn't come to conclusions by analyzing simulations, but rather performing logical comparisons between possible moves to maximize a certain value. In a sense, Minimax is a player that was taught to play the game, MCTS was a player that learned the game themselves, and the LLM is a chess player going into the game applying similar tactics from their chess knowledge. (google deductive intelligence vs inductive intelligence)
+23. MCTS and LLM seem to be computationally similar since they are both focused on inductive reasoning. Minimax differs in its logic in that it doesn't come to conclusions by analyzing a simulation pool, but rather decides which move is most logical for its given ruleset (deductive).
 
-24. 
+    In a sense, Minimax is a player that was taught to play the game, MCTS was a player that learned the game themselves, and the LLM is a chess player going into the game applying similar tactics from their chess knowledge. (google deductive intelligence vs inductive intelligence)
+
+24. We would probably choose to use MCTS as the main algorithm with a simulation count of 180. MCTS makes sense as the algorithm of choice because it approaches optimal play as the number of simulations increases. In the lab, we observed that MCTS-200 usually took just over 0.1 s to simulate 200 outcomes, so this should be just under the 0.1-second time limit. Additionally, we saw that MCTS managed to achieve better performance than other approaches with 200 simulations; a slight decrease will result in worse performance, but it should still perform well.

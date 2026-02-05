@@ -1,6 +1,6 @@
 # advanced_heuristic.py
 from tron_base import TronGame, flood_fill
-from tron_agents import GreedyAgent
+from greedy import GreedyAgent
 from copy import deepcopy
 import time
 
@@ -221,7 +221,7 @@ def compare_heuristics(num_games=15, depth=5, board_size=10):
     print(f"Board: {board_size}x{board_size}, Depth: {depth}")
     print(f"{'='*70}\n")
     
-    from tron_agents import MinimaxAgent
+    from minimax import MinimaxAgent
     
     standard = MinimaxAgent(depth=depth)
     advanced = AdvancedMinimaxAgent(depth=depth)
