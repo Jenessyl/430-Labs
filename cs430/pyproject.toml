@@ -5,10 +5,16 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "grad-cam>=1.5.5",
+    "matplotlib>=3.10.8",
     "nltk>=3.9.2",
     "numpy>=2.4.1",
     "ollama>=0.6.1",
+    "opencv-python>=4.13.0.92",
     "pygame>=2.6.1",
     "requests>=2.32.5",
+    "torch>=2.10.0",
+    "torchattacks>=3.3.0",
+    "torchvision>=0.25.0",
     "z3>=0.2.0",
 ]
